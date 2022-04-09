@@ -2,7 +2,7 @@ import 'package:dicee/src/player_names.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(HomePage());
+  runApp(const HomePage());
 }
 
 class HomePage extends StatelessWidget {
