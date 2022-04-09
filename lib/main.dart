@@ -1,4 +1,9 @@
+import 'package:dicee/src/player_names.dart';
 import 'package:flutter/material.dart';
+
+void main() {
+  runApp(HomePage());
+}
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -7,12 +12,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: SafeArea(
-          child: Container(
-            width: 100,
-            height: 100,
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 100),
-          ),
+        backgroundColor: Colors.black38,
+        appBar: AppBar(
+          title: const Text("Dicee"),
+          centerTitle: true,
+          backgroundColor: Colors.black38,
+        ),
+        body: const SafeArea(
+          child: PlayerNames(),
         ),
       ),
     );
