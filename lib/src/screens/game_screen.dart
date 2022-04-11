@@ -65,7 +65,7 @@ class _GameScreenState extends State<GameScreen> {
         });
       }
     }
-    print(totalDiceRolls);
+    // print(totalDiceRolls);
   }
 
   void changeDice2Num() {
