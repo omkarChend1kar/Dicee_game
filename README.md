@@ -2,4 +2,4 @@
 
 Flutter app with StateFulWidget
 
-![dicee_AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/71365710/162783507-d2d49eaf-4309-4e99-85cd-e3f04aef6f6d.gif)
+![dicee](https://user-images.githubusercontent.com/71365710/162785868-d253c531-e1a9-45e9-9cd8-e531856bbd9d.gif)
