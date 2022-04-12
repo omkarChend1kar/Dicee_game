@@ -7,6 +7,8 @@ class DicePalette extends StatelessWidget {
   // String image2Path;
   final Function() changeDice1Num;
   final Function() changeDice2Num;
+  final bool canDice1Roll;
+  final bool canDice2Roll;
 
   const DicePalette({
     Key? key,
@@ -14,6 +16,8 @@ class DicePalette extends StatelessWidget {
     required this.dice2Number,
     required this.changeDice1Num,
     required this.changeDice2Num,
+    required this.canDice1Roll,
+    required this.canDice2Roll,
     // required this.image1Path,
     // required this.image2Path,
   }) : super(key: key);
@@ -36,8 +40,9 @@ class DicePalette extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: InkWell(
-                  onTap: changeDice1Num,
-                  child: Image.asset('assets/icons/dice$dice1Number.png',
+                  onTap: canDice1Roll ? changeDice1Num : null,
+                  child: Image.asset(
+                    'assets/icons/dice$dice1Number.png',
                   ),
                 ),
               ),
@@ -51,7 +56,7 @@ class DicePalette extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
-                  onTap: changeDice2Num,
+                  onTap: canDice2Roll ? changeDice2Num: null,
                   child: Image.asset(
                     'assets/icons/dice$dice2Number.png',
                   ),

@@ -40,72 +40,80 @@ class _GameScreenState extends State<GameScreen> {
   int player1RoundsWon = 0;
   int player2RoundsWon = 0;
   int totalDiceRolls = 0;
+  bool canDice1Roll = true;
+  bool canDice2Roll = true;
+  bool canReplay = false;
 
   // String image1Path = 'assets/icons/dice$dice1Number.png';
   // String image2Path = 'assets/icons/dice$dice2Number.png';
   void changeDice1Num() {
-    if (!(numberOfDice1Rolls > 5)) {
+    if (numberOfDice1Rolls <= 5) {
       setState(() {
         dice1Number = Random().nextInt(6) + 1;
         playe1Score += dice1Number;
         numberOfDice1Rolls++;
         totalDiceRolls++;
-        // image2Path = 'assets/icons/dice$dice2Number.png';
+        canDice1Roll = false;
+        canDice2Roll = true;
       });
-    } else if (!(totalDiceRolls < 10)) {
+    } else if (totalDiceRolls == 12) {
       if (playe1Score > playe2Score) {
         setState(() {
           player1RoundsWon++;
           totalDiceRolls = 0;
+          canReplay = true;
         });
-      } else if(playe1Score < playe2Score){
+      } else if (playe1Score < playe2Score) {
         setState(() {
           player2RoundsWon++;
           totalDiceRolls = 0;
+          canReplay = true;
         });
       }
     }
-    // print(totalDiceRolls);
   }
 
   void changeDice2Num() {
-    if (!(numberOfDice2Rolls > 5)) {
+    if (numberOfDice2Rolls <= 5) {
       setState(() {
         dice2Number = Random().nextInt(6) + 1;
         playe2Score += dice2Number;
         numberOfDice2Rolls++;
         totalDiceRolls++;
-        // image2Path = 'assets/icons/dice$dice2Number.png';
+        canDice1Roll = true;
+        canDice2Roll = false;
       });
-    } else if (!(totalDiceRolls < 10)) {
+    } else if (totalDiceRolls == 12) {
       if (playe1Score > playe2Score) {
         setState(() {
           player1RoundsWon++;
           totalDiceRolls = 0;
+          canReplay = true;
         });
-      } else if(playe1Score < playe2Score){
+      } else if (playe1Score < playe2Score) {
         setState(() {
           player2RoundsWon++;
           totalDiceRolls = 0;
+          canReplay = true;
         });
       }
     }
   }
 
-  void updateRoundsWon() {
-    if (!(numberOfDice1Rolls < 5 && numberOfDice2Rolls < 5)) {}
-  }
-
   void replay() {
-    setState(() {
-      playe1Score = 0;
-      playe2Score = 0;
-      dice1Number = 1;
-      dice2Number = 1;
-      numberOfDice1Rolls = 0;
-      numberOfDice2Rolls = 0;
-      // totalDiceRolls = 0;
-    });
+    if (canReplay) {
+      setState(() {
+        totalDiceRolls = 0;
+        playe1Score = 0;
+        playe2Score = 0;
+        dice1Number = 1;
+        dice2Number = 1;
+        numberOfDice1Rolls = 0;
+        numberOfDice2Rolls = 0;
+        canReplay = false;
+        // totalDiceRolls = 0;
+      });
+    }
   }
 
   @override
@@ -125,8 +133,8 @@ class _GameScreenState extends State<GameScreen> {
             changeDice2Num: changeDice2Num,
             dice1Number: dice1Number,
             dice2Number: dice2Number,
-            // image1Path: image1Path,
-            // image2Path: image2Path,
+            canDice1Roll: canDice1Roll,
+            canDice2Roll: canDice2Roll,
           ),
           ScorePalette(
             playe1Score: playe1Score,
